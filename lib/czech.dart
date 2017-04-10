@@ -9,3 +9,4 @@ library czech;
 export 'src/czech_base.dart';
 export 'src/czech_bank_account.dart';
 export 'src/czech_personal_id.dart';
+export 'src/czech_company_id.dart';

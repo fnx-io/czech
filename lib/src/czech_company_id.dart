@@ -5,7 +5,7 @@
 /// Is `value` valid Czech national identification number?
 /// Value should contain a slash (/) followed by a identification number suffix.
 ///
-bool isCzechPersonalIdNumber(String value) {
+bool isCzechCompanyIdNumber(String value) {
   // TODO
   return false;
 }
