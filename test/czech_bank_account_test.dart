@@ -20,7 +20,10 @@ void main() {
     });
 
     test('Below inputs should be evaluated as invalid bank accounts', () {
-      expect(isCzechBankAccount("670100-220hovno06/6210"), isFalse);
+      expect(isCzechBankAccount("670100-220darek06/6210"), isFalse);
+      expect(isCzechBankAccount("#ASDF^^^)(DADSASDS"), isFalse);
+      expect(isCzechBankAccount(null), isFalse);
+      expect(isCzechBankAccount(""), isFalse);
       expect(isCzechBankAccount("670100-2208282106/6210", withPrefix: false),
           isFalse);
       expect(isCzechBankAccount("670100-2208282106/6210", withBankCode: false),
