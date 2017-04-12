@@ -8,7 +8,6 @@
  * If the 'withPrefix' is true, then the format of back account is xxxxx-yyyyyyyyyy.
  * Otherwise is just yyyyyyyyyy.
  */
-
 bool isCzechBankAccount(final String bankAccountNumber,
     {withPrefix: true, withBankCode: true}) {
   String prefix;
