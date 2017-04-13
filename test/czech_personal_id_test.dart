@@ -5,12 +5,13 @@ import 'package:czech/czech.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('Tests for bank accounts validation', () {
+  group('Tests for personal id validation', () {
     test('Below inputs should be evaluated as valid personal id numbers', () {
       expect(isCzechPersonalIdNumber("740104/0020"), isTrue);
       expect(isCzechPersonalIdNumber("725414/4337"), isTrue);
       expect(isCzechPersonalIdNumber("740104/002"), isTrue);
-      expect(isCzechPersonalIdNumber("780123/3540"), isTrue); // special but valid ID number
+      expect(isCzechPersonalIdNumber("780123/3540"),
+          isTrue); // special but valid ID
       expect(isCzechPersonalIdNumber("650416/1433"), isTrue);
       expect(isCzechPersonalIdNumber("7401040020"), isTrue);
     });

@@ -4,5 +4,4 @@
 import 'package:czech/czech.dart';
 
 main() {
-
 }
