@@ -11,6 +11,8 @@ void main() {
       expect(isCzechBankAccount("000000-2208282106/6210"), isTrue);
       expect(isCzechBankAccount("2208282106/6210"), isTrue);
       expect(isCzechBankAccount("2208282106/0000"), isTrue);
+      expect(isCzechBankAccount("3033/2700"), isTrue);
+      expect(isCzechBankAccount("3232-3232-3033/2700"), isFalse);
       expect(
           isCzechBankAccount("670100-2208282106", withBankCode: false), isTrue);
       expect(

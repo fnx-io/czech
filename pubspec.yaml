@@ -1,7 +1,10 @@
 name: czech
-description: A starting point for Dart libraries or applications.
-version: 0.0.1
-author: Darius Kryszczuk <darius.kryszczuk@gmail.com>
+description: Set o Czechia-specific functions.
+version: 0.0.9
+homepage: https://github.com/fnx-io/czech
+authors:
+  - Darius Kryszczuk <darius.kryszczuk@gmail.com>
+  - Tomas Zverina <tomucha@gmail.com>
 
 environment:
   sdk: '>=1.20.1 <2.0.0'
