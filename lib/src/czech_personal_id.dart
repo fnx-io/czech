@@ -1,13 +1,14 @@
 // Copyright (c) 2017, tomucha. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-///
-/// Is idNumber valid Czech national identification number?
-/// Value should contain a slash (/) followed by a identification number suffix.
-///
+/**
+ * [isCzechPersonalIdNumber] checks if the czech personal id number is valid.
+ * @param idNumber can be in format ID/SUFFIX or IDSUFFIX
+  */
 bool isCzechPersonalIdNumber(String idNumber) {
   try {
     idNumber = idNumber.replaceAll("/", "");
+    idNumber = idNumber.replaceAll(" ", "");
     return _isIdValid(idNumber) && _isSuffixValid(idNumber);
   } catch (e) {
     return false;
@@ -41,17 +42,18 @@ bool _isSuffixValid(String id) {
     // suffix must have max have 3 or 4 digits
     if (suffix.length < 3 || suffix.length > 4) return false;
 
-    // must have only digits
-    try {
-      int.parse(suffix);
-    } catch (e) {
-      return false;
-    }
-
-    // and whole ID number must be %11 == 0
+    //  1) spočti zbytek po dělení prvních devíti číslic a čísla 11
+    //  2) je-li zbytek 10, musí být poslední číslice 0
+    //  3) jinak poslední číslice musí být rovna zbytku
     if (suffix.length == 4) {
-        if (int.parse(id) % 11 != 0)
-          return false;
+      int firstNine = int.parse(id.substring(0, 9));
+      int last = int.parse(id[9]);
+      int result = firstNine % 11;
+      if (result == 10) {
+        if (last != 0) return false;
+      } else {
+        if (last != result) return false;
+      }
     }
     return true;
 }
