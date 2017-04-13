@@ -4,9 +4,9 @@
 /**
  * [isCzechBankAccount] checks, if the 'bankAccountNumber' is valid czech bank account number.
  *
- * If the 'withBankCode' is true, then the format of back account is yyyyyyyyyy/zzzz.
- * If the 'withPrefix' is true, then the format of back account is xxxxx-yyyyyyyyyy.
- * Otherwise is just yyyyyyyyyy.
+ * If the 'withBankCode' flag stands for bank code after the slash (/) in bank account number (xxxxx-yyyyyyyyyy/ZZZZ).
+ * If the 'withPrefix' flag stands for number before the dash (-) in the bank account number (XXXXX-yyyyyyyyyy/zzzz).
+ * Account number is the number between prefix and bank code.
  */
 bool isCzechBankAccount(final String bankAccountNumber,
     {withPrefix: true, withBankCode: true}) {
