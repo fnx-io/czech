@@ -2,8 +2,8 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 /**
- * [isCzechPersonalIdNumber] checks if the czech personal id number is valid.
- * @param idNumber must be in the format XXXXXX/XXXX or XXXXXXXXXX
+ * Checks if the czech personal id number is valid.
+ * [String idNumber] must be in the format xxxxxx/xxxx or xxxxxxxxxx
   */
 bool isCzechPersonalIdNumber(String idNumber) {
   try {

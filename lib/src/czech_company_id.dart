@@ -2,8 +2,8 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 /**
- * [isCzechCompanyIdNumber] checks if the idNumber is valid company ID number (IČ or previously known as IČO number).
- * @param idNumber must be in the format XXXXXXX
+ * Checks if the [idNumber] is valid company ID number (IČ or previously known as IČO number).
+ * [String idNumber] must be in the format xxxxxxx
  */
 bool isCzechCompanyIdNumber(String idNumber) {
   try {

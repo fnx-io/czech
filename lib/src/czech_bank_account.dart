@@ -2,12 +2,9 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 /**
- * [isCzechBankAccount] checks, if the 'bankAccountNumber' is valid czech bank account number.
- *
- * Format of the bankAccountNumber is xxxxx-yyyyyyyyyy/ZZZZ or yyyyyyyyyy/ZZZZ
- * The 'withBankCode' flag stands for bank code after the slash (/) in bank account number (xxxxx-yyyyyyyyyy/ZZZZ).
- *
- * Account number is the number between prefix and bank code.
+ * Checks if the [bankAccountNumber] is valid czech bank account number.
+ * [String bankAccountNumber] must be in format xxxxx-yyyyyyyyyy/zzzz (prefix and bank code are optional)
+ * [bool withBankCode] flag stands for bank code after the slash (/)
  */
 bool isCzechBankAccount(final String bankAccountNumber, {withBankCode: true}) {
   String prefix;
@@ -46,33 +43,47 @@ bool _isValidAccount(String accountNumber, [String prefix, String bankCode]) {
   return true;
 }
 
-bool _isValidBankCode(String bankCode) => bankCode.length == 4;
+bool _isValidPrefix(String prefix) {
+  // Invalid length of prefix
+  if (prefix.length < 6) return false;
+
+  // Invalid IBAN of prefix
+  if (!_isValidNumberStructure(prefix, AccountNumberType.prefix)) return false;
+
+  return true;
+}
 
 bool _isValidAccountNumber(String accountNumber) {
   // Invalid length of account number
   if (accountNumber.length > 10 && accountNumber.length < 2) return false;
 
   // Invalid IBAN of account number
-  if (!_isValidIBANNumber(accountNumber)) return false;
+  if (!_isValidNumberStructure(accountNumber, AccountNumberType.accountNumber))
+    return false;
 
   return true;
 }
 
-bool _isValidPrefix(String prefix) {
-  // Invalid length of prefix
-  if (prefix.length < 6) return false;
+bool _isValidBankCode(String bankCode) => bankCode.length == 4;
 
-  // Invalid IBAN of prefix
-  if (!_isValidIBANNumber(prefix)) return false;
-
-  return true;
-}
+enum AccountNumberType { prefix, accountNumber, bankCode }
 
 /**
- * [_isValidIBANNumber] implements IBAN validity check algorithm
+ * [_isValidNumberStructure] implements a Modulus 11-check algorithm with weights used to validate the account number structure.
+ * For more info go to: http://www.cnb.cz/cs/platebni_styk/iban/download/TR201.pdf (page 40)
+ *
+ * [String number] of prefix or account number
+ * [AccountNumberType type] of account number part
  */
-bool _isValidIBANNumber(String number) {
-  const List<int> weights = const [1, 2, 4, 8, 5, 10, 9, 7, 3, 6];
+bool _isValidNumberStructure(String number, AccountNumberType type) {
+  List<int> weights;
+  if (type == AccountNumberType.prefix) {
+    weights = [1, 2, 4, 8, 5, 10];
+  } else if (type == AccountNumberType.accountNumber) {
+    weights = [1, 2, 4, 8, 5, 10, 9, 7, 3, 6];
+  } else {
+    throw "Invalid type";
+  }
   int tmp, j, i;
   tmp = j = 0;
   for (i = number.length; i > 0; i--) {
