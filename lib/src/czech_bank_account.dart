@@ -8,15 +8,14 @@
  * The 'withPrefix' flag stands for number before the dash (-) in the bank account number (XXXXX-yyyyyyyyyy/zzzz).
  * Account number is the number between prefix and bank code.
  */
-bool isCzechBankAccount(final String bankAccountNumber,
-    {withPrefix: true, withBankCode: true}) {
+bool isCzechBankAccount(final String bankAccountNumber, {withBankCode: true}) {
   String prefix;
   String accountNumber;
   String bankCode;
   try {
     accountNumber = bankAccountNumber.replaceAll(" ", "");
     // Get prefix is exists
-    if (withPrefix) {
+    if (bankAccountNumber.contains("-")) {
       int prefixIndex = accountNumber.indexOf("-");
       prefix = accountNumber.substring(0, prefixIndex);
       accountNumber = accountNumber.substring(prefixIndex + 1);

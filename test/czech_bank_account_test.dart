@@ -9,13 +9,13 @@ void main() {
     test('Below inputs should be evaluated as valid bank accounts', () {
       expect(isCzechBankAccount("670100-2208282106/6210"), isTrue);
       expect(isCzechBankAccount("000000-2208282106/6210"), isTrue);
-      expect(isCzechBankAccount("2208282106/6210", withPrefix: false), isTrue);
-      expect(isCzechBankAccount("2208282106/0000", withPrefix: false), isTrue);
+      expect(isCzechBankAccount("2208282106/6210"), isTrue);
+      expect(isCzechBankAccount("2208282106/0000"), isTrue);
       expect(
           isCzechBankAccount("670100-2208282106", withBankCode: false), isTrue);
       expect(
           isCzechBankAccount("2208282106",
-              withBankCode: false, withPrefix: false),
+              withBankCode: false),
           isTrue);
     });
 
@@ -24,20 +24,13 @@ void main() {
       expect(isCzechBankAccount("#ASDF^^^)(DADSASDS"), isFalse);
       expect(isCzechBankAccount(null), isFalse);
       expect(isCzechBankAccount(""), isFalse);
-      expect(isCzechBankAccount("670100-2208282106/6210", withPrefix: false),
-          isFalse);
       expect(isCzechBankAccount("670100-2208282106/6210", withBankCode: false),
           isFalse);
-      expect(
-          isCzechBankAccount("670100-2208282106/6210",
-              withBankCode: false, withPrefix: false),
-          isFalse);
-      expect(isCzechBankAccount("22082821066210", withPrefix: false), isFalse);
       expect(isCzechBankAccount("670100-22-08282106", withBankCode: false),
           isFalse);
       expect(
           isCzechBankAccount("2202821061111",
-              withBankCode: false, withPrefix: false),
+              withBankCode: false),
           isFalse);
     });
   });
