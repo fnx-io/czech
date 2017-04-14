@@ -10,24 +10,49 @@ void main() {
       expect(isCzechPersonalIdNumber("740104/0020"), isTrue);
       expect(isCzechPersonalIdNumber("725414/4337"), isTrue);
       expect(isCzechPersonalIdNumber("740104/002"), isTrue);
-      expect(isCzechPersonalIdNumber("780123/3540"),
-          isTrue); // special but valid ID
+      expect(isCzechPersonalIdNumber("780123/3540"), isTrue); // spec. valid ID
       expect(isCzechPersonalIdNumber("650416/1433"), isTrue);
       expect(isCzechPersonalIdNumber("7401040020"), isTrue);
+      expect(isCzechPersonalIdNumber("911109/9327"), isTrue);
+      expect(isCzechPersonalIdNumber("951115/9779"), isTrue);
+      expect(isCzechPersonalIdNumber("820611/0979"), isTrue);
+      expect(isCzechPersonalIdNumber("710114/2939"), isTrue);
+      expect(isCzechPersonalIdNumber("690409/2041"), isTrue);
+      expect(isCzechPersonalIdNumber("610321/9364"), isTrue);
+      expect(isCzechPersonalIdNumber("535402/756"), isTrue);
+      expect(isCzechPersonalIdNumber("410109/306"), isTrue);
+      expect(isCzechPersonalIdNumber("410109/306"), isTrue);
+      expect(isCzechPersonalIdNumber("320325/190"), isTrue);
+      expect(isCzechPersonalIdNumber("305510/720"), isTrue);
     });
 
     test('Below inputs should be evaluated as invalid personal id numbers', () {
-      expect(isCzechPersonalIdNumber("740104/0021"), isFalse);
-      expect(isCzechPersonalIdNumber("740104/21"), isFalse);
-      expect(isCzechPersonalIdNumber("7401041/0021"), isFalse);
-      expect(isCzechPersonalIdNumber("0021"), isFalse);
-      expect(isCzechPersonalIdNumber("/0021"), isFalse);
-      expect(isCzechPersonalIdNumber("7401041/"), isFalse);
-      expect(isCzechPersonalIdNumber("7401041"), isFalse);
       expect(isCzechPersonalIdNumber(""), isFalse);
       expect(isCzechPersonalIdNumber(null), isFalse);
       expect(isCzechPersonalIdNumber("1darek/0000"), isFalse);
       expect(isCzechPersonalIdNumber("##(*)(/@@@@"), isFalse);
+      expect(isCzechPersonalIdNumber("0021"), isFalse);
+      expect(isCzechPersonalIdNumber("/0021"), isFalse);
+      expect(isCzechPersonalIdNumber("7401041/"), isFalse);
+      expect(isCzechPersonalIdNumber("7401041"), isFalse);
+      expect(
+          isCzechPersonalIdNumber("740104/0021"), isFalse); // invalid structure
+      expect(
+          isCzechPersonalIdNumber("740104/21"), isFalse); // invalid structure
+      expect(isCzechPersonalIdNumber("7401041/0021"),
+          isFalse); // invalid structure
+      expect(
+          isCzechPersonalIdNumber("238746370"), isFalse); // invalid structure
+      expect(
+          isCzechPersonalIdNumber("873488373"), isFalse); // invalid structure
+      expect(
+          isCzechPersonalIdNumber("2387437733"), isFalse); // invalid structure
+      expect(
+          isCzechPersonalIdNumber("2387437733"), isFalse); // invalid structure
+      expect(
+          isCzechPersonalIdNumber("3232872873"), isFalse); // invalid structure
+      expect(
+          isCzechPersonalIdNumber("8811200976"), isFalse); // invalid structure
     });
   });
 }

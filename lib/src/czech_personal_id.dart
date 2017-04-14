@@ -2,7 +2,7 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 /**
- * Checks if the czech personal id number is valid.
+ * Checks if the [idNumber] is valid czech personal ID number (Rodne cislo)
  * [String idNumber] must be in the format xxxxxx/xxxx or xxxxxxxxxx
   */
 bool isCzechPersonalIdNumber(String idNumber) {
@@ -20,7 +20,7 @@ bool _isIdValid(final String id) {
   final int yy = int.parse(id.trim().substring(0, 2));
   if (!(yy >= 0 && yy <= 99)) return false;
 
-  // month can be month of birth + 20 or 50 or 70
+  // month can be month of birth or +20 or +50 or +70
   final int mm = int.parse(id.trim().substring(2, 4));
   if (!((mm >= 1 && mm <= 12) ||
       (mm - 20 >= 1 && mm - 20 <= 12) ||
@@ -34,10 +34,12 @@ bool _isIdValid(final String id) {
   return true;
 }
 
-///  Algoritmus pro validaci suffixu RC:
-///  1) spočti zbytek po dělení prvních devíti číslic a čísla 11;
-///  2) je-li zbytek 10, musí být poslední číslice 0;
-///  3) jinak poslední číslice musí být rovna zbytku;
+/**
+ * [_isSuffixValid] implements algorithm for personal ID number validation.
+ * [ref link]: https://phpfashion.com/jak-overit-platne-ic-a-rodne-cislo
+ *
+ * [String id] of personal ID number in format xxxxxxxxxx
+ */
 bool _isSuffixValid(final String id) {
   String suffix = id.substring(6);
   // suffix must have max have 3 or 4 digits

@@ -2,8 +2,8 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 /**
- * Checks if the [idNumber] is valid company ID number (IČ or previously known as IČO number).
- * [String idNumber] must be in the format xxxxxxx
+ * Checks if the [idNumber] is valid czech company ID number (IC or previously known as ICO number).
+ * [String idNumber] of IC/ICO in format xxxxxxxx or xxx xx xxx
  */
 bool isCzechCompanyIdNumber(String idNumber) {
   try {
@@ -14,12 +14,12 @@ bool isCzechCompanyIdNumber(String idNumber) {
   }
 }
 
-/// Algoritmus pro validaci IC/ICO:
-/// 1. první až sedmou číslici vynásobíme čísly 8, 7, 6, 5, 4, 3, 2 a součiny sečteme;
-/// 2. spočítáme zbytek po dělení jedenácti a pro poslední osmou číslici c musí platit:
-///   * je-li zbytek 0, pak c = 1
-///   * je-li zbytek 1, pak c = 0
-///   * v ostatních případech je c = 11 - zbytek
+/**
+ * [_isIdValid] implements algorithm for IC/ICO validation.
+ * [ref link]: https://phpfashion.com/jak-overit-platne-ic-a-rodne-cislo
+ *
+ * [String idNumber] of IC/ICO in format xxxxxxxx
+ */
 bool _isIdValid(final String idNumber) {
   // must have 7 digits
   if (idNumber.length != 8) return false;
