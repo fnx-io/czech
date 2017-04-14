@@ -38,6 +38,9 @@ A simple usage example:
     
     }
 
+## Attributions
+
+Based on analysis by David Grudl: https://phpfashion.com/jak-overit-platne-ic-a-rodne-cislo
 
 ## Features and bugs
 
