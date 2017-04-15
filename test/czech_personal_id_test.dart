@@ -9,7 +9,6 @@ void main() {
     test('Below inputs should be evaluated as valid personal id numbers', () {
       expect(isCzechPersonalIdNumber("740104/0020"), isTrue);
       expect(isCzechPersonalIdNumber("725414/4337"), isTrue);
-      expect(isCzechPersonalIdNumber("740104/002"), isTrue);
       expect(isCzechPersonalIdNumber("780123/3540"), isTrue); // spec. valid ID
       expect(isCzechPersonalIdNumber("650416/1433"), isTrue);
       expect(isCzechPersonalIdNumber("7401040020"), isTrue);
@@ -24,6 +23,9 @@ void main() {
       expect(isCzechPersonalIdNumber("410109/306"), isTrue);
       expect(isCzechPersonalIdNumber("320325/190"), isTrue);
       expect(isCzechPersonalIdNumber("305510/720"), isTrue);
+      expect(isCzechPersonalIdNumber("8002301010"), isTrue);
+      expect(isCzechPersonalIdNumber("175510/720"), isTrue);
+      expect(isCzechPersonalIdNumber("175510/7200"), isTrue);
     });
 
     test('Below inputs should be evaluated as invalid personal id numbers', () {
@@ -53,6 +55,8 @@ void main() {
           isCzechPersonalIdNumber("3232872873"), isFalse); // invalid structure
       expect(
           isCzechPersonalIdNumber("8811200976"), isFalse); // invalid structure
+      expect(isCzechPersonalIdNumber("540101123"),
+          isFalse); // from year 1954 every personal ID must be with control digit
     });
   });
 }

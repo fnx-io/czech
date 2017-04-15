@@ -42,8 +42,13 @@ bool _isIdValid(final String id) {
  */
 bool _isSuffixValid(final String id) {
   String suffix = id.substring(6);
-  // suffix must have max have 3 or 4 digits
-  if (suffix.length < 3 || suffix.length > 4) return false;
+  int year = int.parse(id.trim().substring(0, 2));
+  // suffix must have 3 (id before 1954) or 4 digits (id after 1954)
+  if ((suffix.length == 3 && year >= 54) ||
+      suffix.length < 3 ||
+      suffix.length > 4) return false;
+
+  // personal ID algorithm validation
   if (suffix.length == 4) {
     int firstNine = int.parse(id.substring(0, 9));
     int last = int.parse(id[9]);

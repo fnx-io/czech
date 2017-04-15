@@ -1,6 +1,6 @@
 name: czech
 description: Set of Czechia-specific functions.
-version: 0.1.1
+version: 0.1.2
 homepage: https://github.com/fnx-io/czech
 authors:
   - Darius Kryszczuk <darius.kryszczuk@gmail.com>
