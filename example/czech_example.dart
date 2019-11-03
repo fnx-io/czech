@@ -4,7 +4,6 @@
 import 'package:czech/czech.dart' as cz;
 
 main() {
-
   // a.k.a Rodné číslo
   if (cz.isCzechPersonalIdNumber("780324/6543")) {
     print("Valid!");
@@ -24,5 +23,4 @@ main() {
   if (cz.isCzechBankAccount("3033", withBankCode: false)) {
     print("Valid!");
   }
-
 }
