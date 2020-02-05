@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.0
+- refactored to CzechAccountNumber class with .fromString constructor
+- backward compatible isCzechBankAccount() method
+- account sting is validated with RegExp
+- BIC is looked up from a static map taken from https://www.cnb.cz/en/payments/iban/iban-calculator-czech-republic/
+- formattedAccount, bic and iban are available if successfully instantiated
+- if .formattedAccount is null or .accountNumber is null => not a valid czech account
+
 ## 2.0.0
 - Nothing! 
 
