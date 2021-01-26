@@ -23,9 +23,12 @@ void main() {
       expect(isCzechPersonalIdNumber("410109/306"), isTrue);
       expect(isCzechPersonalIdNumber("320325/190"), isTrue);
       expect(isCzechPersonalIdNumber("305510/720"), isTrue);
-      expect(isCzechPersonalIdNumber("8002301010"), isTrue);
       expect(isCzechPersonalIdNumber("175510/720"), isTrue);
       expect(isCzechPersonalIdNumber("175510/7200"), isTrue);
+      expect(isCzechPersonalIdNumber("0002231010"), isTrue);
+      expect(isCzechPersonalIdNumber("1602291010"), isTrue); // leap year
+      expect(isCzechPersonalIdNumber("2002291016"), isTrue); // leap year
+      expect(isCzechPersonalIdNumber("5202291017"), isTrue); // leap year
     });
 
     test('Below inputs should be evaluated as invalid personal id numbers', () {
@@ -57,6 +60,14 @@ void main() {
           isCzechPersonalIdNumber("8811200976"), isFalse); // invalid structure
       expect(isCzechPersonalIdNumber("540101123"),
           isFalse); // from year 1954 every personal ID must be with control digit
+      expect(isCzechPersonalIdNumber("8002301010"), isFalse); // invalid date
+      expect(isCzechPersonalIdNumber("1705741015"), isFalse); // invalid date
+      expect(isCzechPersonalIdNumber("8702291114"), isFalse); // invalid date
+      expect(isCzechPersonalIdNumber("8700291114"), isFalse); // invalid date
+      expect(isCzechPersonalIdNumber("0006311019"), isFalse); // invalid date
+      expect(isCzechPersonalIdNumber("1702291019"), isFalse); // not a leap year
+      expect(isCzechPersonalIdNumber("2102291015"), isFalse); // not a leap year
+      expect(isCzechPersonalIdNumber("5302291016"), isFalse); // not a leap year
     });
   });
 }
