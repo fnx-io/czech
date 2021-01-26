@@ -32,21 +32,11 @@ bool _isIdValid(final String id) {
 
 bool _isValidDate(final int d, final int m, final int yyyy) {
   try {
-    final dd = "$d".padLeft(2, "0");
-    final mm = "$m".padLeft(2, "0");
-    final yyyymmdd = "$yyyy$mm$dd";
     final dt = new DateTime(yyyy, m, d);
-    return yyyymmdd == _toyyyymmdd(dt);
+    return dt.month == m;
   } catch (e) {
     return false;
   }
-}
-
-String _toyyyymmdd(final DateTime dt) {
-  final yyyy = dt.year.toString().padLeft(4, "0");
-  final mm = dt.month.toString().padLeft(2, "0");
-  final dd = dt.day.toString().padLeft(2, "0");
-  return "$yyyy$mm$dd";
 }
 
 /**
