@@ -17,21 +17,47 @@ bool isCzechPersonalIdNumber(String idNumber) {
 
 bool _isIdValid(final String id) {
   // validate year
-  final int yy = int.parse(id.trim().substring(0, 2));
-  if (!(yy >= 0 && yy <= 99)) return false;
+  final int y = int.parse(id.trim().substring(0, 2));
+  if (!(y >= 0 && y <= 99)) return false;
 
-  // month can be month of birth or +20 or +50 or +70
-  final int mm = int.parse(id.trim().substring(2, 4));
-  if (!((mm >= 1 && mm <= 12) ||
-      (mm - 20 >= 1 && mm - 20 <= 12) ||
-      (mm - 50 >= 1 && mm - 50 <= 12) ||
-      (mm - 70 >= 1 && mm - 70 <= 12))) return false;
+  // validate month
+  final int m = int.parse(id.trim().substring(2, 4));
+  final int mNormalized = _normalizeMonth(m);
+  if (mNormalized < 1 || mNormalized > 12) return false;
 
   // validate date
-  final int dd = int.parse(id.trim().substring(4, 6));
-  if (!(dd >= 1 && dd <= 31)) return false;
+  final int d = int.parse(id.trim().substring(4, 6));
+  return _isValidDate(d, mNormalized, 2000 + y);
+}
 
-  return true;
+bool _isValidDate(final int d, final int m, final int yyyy) {
+  try {
+    final dd = "$d".padLeft(2, "0");
+    final mm = "$m".padLeft(2, "0");
+    final yyyymmdd = "$yyyy$mm$dd";
+    final dt = new DateTime(yyyy, m, d);
+    return yyyymmdd == _toyyyymmdd(dt);
+  } catch (e) {
+    return false;
+  }
+}
+
+String _toyyyymmdd(final DateTime dt) {
+  final yyyy = dt.year.toString().padLeft(4, "0");
+  final mm = dt.month.toString().padLeft(2, "0");
+  final dd = dt.day.toString().padLeft(2, "0");
+  return "$yyyy$mm$dd";
+}
+
+/**
+* Returns normalized month that begin at 1.
+* [int mm] month of birth or +20 or +50 or +70
+*/
+int _normalizeMonth(final int mm) {
+  if (mm >= 70) return mm - 70;
+  if (mm >= 50) return mm - 50;
+  if (mm >= 20) return mm - 20;
+  return mm;
 }
 
 /**
