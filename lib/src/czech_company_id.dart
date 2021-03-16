@@ -1,10 +1,9 @@
 // Copyright (c) 2017, tomucha. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-/**
- * Checks if the [idNumber] is valid czech company ID number (IC or previously known as ICO number).
- * [String idNumber] of IC/ICO in format xxxxxxxx or xxx xx xxx
- */
+/// Checks if the [idNumber] is valid czech company ID number (IC or previously known as ICO number).
+/// [String idNumber] of IC/ICO in format xxxxxxxx or xxx xx xxx
+///
 bool isCzechCompanyIdNumber(String idNumber) {
   try {
     idNumber = idNumber.replaceAll(" ", "");

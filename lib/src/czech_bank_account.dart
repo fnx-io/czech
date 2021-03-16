@@ -2,7 +2,7 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 import 'package:mod97/mod97.dart';
 
-bool isCzechBankAccount(final String bankAccountNumber, {withBankCode: true}) {
+bool isCzechBankAccount(final String bankAccountNumber, {withBankCode = true}) {
   final account = CzechBankAccount.fromString(bankAccountNumber);
   if (account.accountNumber == null) return false;
   if (withBankCode) {
