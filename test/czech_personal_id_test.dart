@@ -33,33 +33,23 @@ void main() {
 
     test('Below inputs should be evaluated as invalid personal id numbers', () {
       expect(isCzechPersonalIdNumber(""), isFalse);
-      expect(isCzechPersonalIdNumber(null), isFalse);
       expect(isCzechPersonalIdNumber("1darek/0000"), isFalse);
       expect(isCzechPersonalIdNumber("##(*)(/@@@@"), isFalse);
       expect(isCzechPersonalIdNumber("0021"), isFalse);
       expect(isCzechPersonalIdNumber("/0021"), isFalse);
       expect(isCzechPersonalIdNumber("7401041/"), isFalse);
       expect(isCzechPersonalIdNumber("7401041"), isFalse);
+      expect(isCzechPersonalIdNumber("740104/0021"), isFalse); // invalid structure
+      expect(isCzechPersonalIdNumber("740104/21"), isFalse); // invalid structure
+      expect(isCzechPersonalIdNumber("7401041/0021"), isFalse); // invalid structure
+      expect(isCzechPersonalIdNumber("238746370"), isFalse); // invalid structure
+      expect(isCzechPersonalIdNumber("873488373"), isFalse); // invalid structure
+      expect(isCzechPersonalIdNumber("2387437733"), isFalse); // invalid structure
+      expect(isCzechPersonalIdNumber("2387437733"), isFalse); // invalid structure
+      expect(isCzechPersonalIdNumber("3232872873"), isFalse); // invalid structure
+      expect(isCzechPersonalIdNumber("8811200976"), isFalse); // invalid structure
       expect(
-          isCzechPersonalIdNumber("740104/0021"), isFalse); // invalid structure
-      expect(
-          isCzechPersonalIdNumber("740104/21"), isFalse); // invalid structure
-      expect(isCzechPersonalIdNumber("7401041/0021"),
-          isFalse); // invalid structure
-      expect(
-          isCzechPersonalIdNumber("238746370"), isFalse); // invalid structure
-      expect(
-          isCzechPersonalIdNumber("873488373"), isFalse); // invalid structure
-      expect(
-          isCzechPersonalIdNumber("2387437733"), isFalse); // invalid structure
-      expect(
-          isCzechPersonalIdNumber("2387437733"), isFalse); // invalid structure
-      expect(
-          isCzechPersonalIdNumber("3232872873"), isFalse); // invalid structure
-      expect(
-          isCzechPersonalIdNumber("8811200976"), isFalse); // invalid structure
-      expect(isCzechPersonalIdNumber("540101123"),
-          isFalse); // from year 1954 every personal ID must be with control digit
+          isCzechPersonalIdNumber("540101123"), isFalse); // from year 1954 every personal ID must be with control digit
       expect(isCzechPersonalIdNumber("8002301010"), isFalse); // invalid date
       expect(isCzechPersonalIdNumber("1705741015"), isFalse); // invalid date
       expect(isCzechPersonalIdNumber("8702291114"), isFalse); // invalid date

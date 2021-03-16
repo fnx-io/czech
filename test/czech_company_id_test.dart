@@ -29,7 +29,6 @@ void main() {
 
     test('Below inputs should be evaluated as invalid company id numbers', () {
       expect(isCzechCompanyIdNumber(""), isFalse);
-      expect(isCzechCompanyIdNumber(null), isFalse);
       expect(isCzechCompanyIdNumber("1darek/0000"), isFalse);
       expect(isCzechCompanyIdNumber("883929483"), isFalse); // invalid length
       expect(isCzechCompanyIdNumber("##(*)(/@@@@"), isFalse);

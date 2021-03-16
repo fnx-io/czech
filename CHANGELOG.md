@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.0
+- null safe
+
+## 2.6.0
+- more validation (no API changes)
+
 ## 2.1.0
 - refactored to CzechAccountNumber class with .fromString constructor
 - backward compatible isCzechBankAccount() method
