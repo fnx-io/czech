@@ -68,6 +68,8 @@ void main() {
       expect(isCzechPersonalIdNumber("1702291019"), isFalse); // not a leap year
       expect(isCzechPersonalIdNumber("2102291015"), isFalse); // not a leap year
       expect(isCzechPersonalIdNumber("5302291016"), isFalse); // not a leap year
+      expect(isCzechPersonalIdNumber("16/03/201x1"), isFalse); // contains invalid characters
+      expect(isCzechPersonalIdNumber("1603201x1"), isFalse); // contains invalid characters
     });
   });
 }
