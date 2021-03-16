@@ -16,6 +16,11 @@ bool isCzechPersonalIdNumber(String idNumber) {
 }
 
 bool _isIdValid(final String id) {
+  // validate characters
+  if (int.tryParse(id) == null) {
+    return false;
+  }
+
   // validate year
   final int y = int.parse(id.trim().substring(0, 2));
   if (!(y >= 0 && y <= 99)) return false;
