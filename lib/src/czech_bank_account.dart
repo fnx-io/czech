@@ -37,10 +37,12 @@ class CzechBankAccount {
   String? _bic;
   get bic => _bic;
 
-  final _accountRegExp = RegExp(r'^(([0-9]{1,6})\-)?([0-9]{2,10})(/([0-9]{4}))?$');
+  final _accountRegExp =
+      RegExp(r'^(([0-9]{1,6})\-)?([0-9]{2,10})(/([0-9]{4}))?$');
 
   CzechBankAccount.fromString(final String account) {
-    final m = _accountRegExp.firstMatch(account.replaceAll(' ', "").replaceAll("  ", ""));
+    final m = _accountRegExp
+        .firstMatch(account.replaceAll(' ', "").replaceAll("  ", ""));
 
     if (m == null) return;
 
@@ -57,14 +59,17 @@ class CzechBankAccount {
 
     _bankCode = m.group(5);
 
-    _formattedAccount = (_prefix != null ? (int.tryParse(_prefix!).toString() + "-") : "") +
-        (int.tryParse(_accountNumber!).toString()) +
-        (_bankCode != null ? ('/' + _bankCode!) : '');
+    _formattedAccount =
+        (_prefix != null ? (int.tryParse(_prefix!).toString() + "-") : "") +
+            (int.tryParse(_accountNumber!).toString()) +
+            (_bankCode != null ? ('/' + _bankCode!) : '');
 
     if (_bankCode != null) _bic = _bankCodes[_bankCode!];
 
     if (_bic != null && _accountNumber != null) {
-      final ib = _bankCode! + (_prefix ?? "0").padLeft(6, '0') + _accountNumber!.padLeft(10, '0');
+      final ib = _bankCode! +
+          (_prefix ?? "0").padLeft(6, '0') +
+          _accountNumber!.padLeft(10, '0');
 
       final di = 98 - mod97(ib + "123500");
       _iban = 'CZ' + di.toString().padLeft(2, '0') + ib;
