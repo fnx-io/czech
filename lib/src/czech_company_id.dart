@@ -6,31 +6,30 @@
 ///
 bool isCzechCompanyIdNumber(String idNumber) {
   try {
-    idNumber = idNumber.replaceAll(" ", "");
+    idNumber = idNumber.replaceAll(' ', '');
     return _isIdValid(idNumber);
   } catch (e) {
     return false;
   }
 }
 
-/**
- * [_isIdValid] implements algorithm for IC/ICO validation.
- * [ref link]: https://phpfashion.com/jak-overit-platne-ic-a-rodne-cislo
- *
- * [String idNumber] of IC/ICO in format xxxxxxxx
- */
+/// [_isIdValid] implements algorithm for IC/ICO validation.
+/// [ref link]: https://phpfashion.com/jak-overit-platne-ic-a-rodne-cislo
+///
+/// [String idNumber] of IC/ICO in format xxxxxxxx
+///
 bool _isIdValid(final String idNumber) {
   // must have 7 digits
   if (idNumber.length != 8) return false;
 
   // validation algorithm
-  List<int> weights = const [8, 7, 6, 5, 4, 3, 2];
-  int sum = 0;
-  for (int i = 0; i < weights.length; i++) {
+  var weights = const <int>[8, 7, 6, 5, 4, 3, 2];
+  var sum = 0;
+  for (var i = 0; i < weights.length; i++) {
     sum += int.parse(idNumber[i]) * weights[i];
   }
-  int remain = sum % 11;
-  int c = int.parse(idNumber[7]);
+  var remain = sum % 11;
+  var c = int.parse(idNumber[7]);
   if (remain == 0) {
     if (c != 1) return false;
   } else if (remain == 1) {

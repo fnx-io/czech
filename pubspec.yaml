@@ -1,6 +1,6 @@
 name: czech
 description: "Set of Czechia-specific functions: parse and validate bank account number, personal ID, company ID, ... Hezky česky!"
-version: 3.0.1
+version: 3.0.2
 homepage: https://github.com/fnx-io/czech
 
 environment:
@@ -11,3 +11,4 @@ dependencies:
 
 dev_dependencies:
   test: ^1.16.8
+  pedantic: ^1.11.0
