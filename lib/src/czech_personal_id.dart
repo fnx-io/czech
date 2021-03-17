@@ -62,7 +62,9 @@ bool _isSuffixValid(final String id) {
   var suffix = id.substring(6);
   var year = int.parse(id.trim().substring(0, 2));
   // suffix must have 3 (id before 1954) or 4 digits (id after 1954)
-  if ((suffix.length == 3 && year >= 54) || suffix.length < 3 || suffix.length > 4) return false;
+  if ((suffix.length == 3 && year >= 54) ||
+      suffix.length < 3 ||
+      suffix.length > 4) return false;
 
   // personal ID algorithm validation
   if (suffix.length == 4) {
